@@ -75,7 +75,14 @@ class PictureFragment : Fragment() {
 
             }
             is State.Error -> {
-                State.error.message?.let { view?.createSnackbarAndShow(it) }
+                State.error.message?.let {
+                    view?.createSnackbarAndShow(it)
+                }
+
+                binding.let {
+                    it.imageApod.setImageResource(R.drawable.ic_load_error_photo)
+                    it.bottomSheetInclude.bottomSheetDescription.text = State.error.message ?: ""
+                }
             }
         }
     }
