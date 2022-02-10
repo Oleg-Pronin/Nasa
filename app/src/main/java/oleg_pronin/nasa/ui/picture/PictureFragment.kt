@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
+import oleg_pronin.nasa.R
 import oleg_pronin.nasa.State
 import oleg_pronin.nasa.databinding.FragmentPictureBinding
+import oleg_pronin.nasa.domain.entity.APOD
 import oleg_pronin.nasa.utils.createSnackbarAndShow
-import java.time.LocalDate
 
 class PictureFragment : Fragment() {
     private var _binding: FragmentPictureBinding? = null
@@ -30,17 +32,27 @@ class PictureFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initViewModel(viewModel)
+
+        viewModel.getPictureOfTheDay()
     }
 
     private fun initViewModel(viewModel: PictureContract.ViewModal) {
-        viewModel.picture.observe(viewLifecycleOwner) { renderData(it) }
+        viewModel.pictureLiveData.observe(viewLifecycleOwner) { renderData(it) }
     }
 
     private fun renderData(State: State) {
         when (State) {
             is State.Success -> {
-//                val movie = State.data as Movie
+                val apod = State.data as APOD
 
+                apod.url?.let {
+                    Glide
+                        .with(this)
+                        .load(apod.url)
+                        .error(R.drawable.ic_load_error_photo)
+                        .placeholder(R.drawable.ic_no_photo)
+                        .into(binding.imageApod)
+                }
             }
             is State.Loading -> {
 
