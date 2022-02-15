@@ -42,8 +42,5 @@ class PictureViewModel : ViewModel(), PictureContract.ViewModal {
                 }
             })
         }
-
-
     }
-
 }

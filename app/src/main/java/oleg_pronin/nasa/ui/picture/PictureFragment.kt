@@ -1,11 +1,8 @@
 package oleg_pronin.nasa.ui.picture
 
 import android.os.Bundle
-import android.view.HapticFeedbackConstants
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
@@ -14,6 +11,8 @@ import oleg_pronin.nasa.R
 import oleg_pronin.nasa.State
 import oleg_pronin.nasa.databinding.FragmentPictureBinding
 import oleg_pronin.nasa.domain.entity.APOD
+import oleg_pronin.nasa.ui.bottom_navigation.BottomNavigationDrawerFragment
+import oleg_pronin.nasa.ui.search.SearchFragment
 import oleg_pronin.nasa.utils.createSnackbarAndShow
 
 class PictureFragment : Fragment() {
@@ -37,14 +36,46 @@ class PictureFragment : Fragment() {
 
         initUIEvent()
         initViewModel()
+
         setBottomSheetBehavior(binding.bottomSheetInclude.bottomSheetContainer)
 
         viewModel.getPictureOfTheDay()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        inflater.inflate(R.menu.menu_bottom_navigation, menu)
+    }
+
     private fun initUIEvent() {
         binding.imageApod.setOnClickListener {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        }
+
+        binding.bottomAppBar.setNavigationOnClickListener {
+            activity?.let {
+                BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
+            }
+        }
+
+        binding.bottomAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.app_bar_search -> {
+                    activity
+                        ?.supportFragmentManager
+                        ?.beginTransaction()
+                        ?.replace(R.id.container, SearchFragment())
+                        ?.addToBackStack(null)
+                        ?.commit()
+                    true
+                }
+                else -> false
+            }
+        }
+
+        binding.fab.setOnClickListener {
+            viewModel.getPictureOfTheDay()
         }
     }
 
@@ -55,16 +86,16 @@ class PictureFragment : Fragment() {
     private fun renderData(State: State) {
         when (State) {
             is State.Success -> {
-                val apod = State.data as APOD
-
-                apod.url?.let {
+                (State.data as APOD).let { apod ->
                     binding.let {
-                        Glide
-                            .with(this)
-                            .load(apod.url)
-                            .error(R.drawable.ic_load_error_photo)
-                            .placeholder(R.drawable.ic_no_photo)
-                            .into(it.imageApod)
+                        apod.url?.let { url ->
+                            Glide
+                                .with(this)
+                                .load(url)
+                                .error(R.drawable.ic_load_error_photo)
+                                .placeholder(R.drawable.ic_no_photo)
+                                .into(it.imageApod)
+                        }
 
                         it.bottomSheetInclude.bottomSheetDescriptionHeader.text = apod.title
                         it.bottomSheetInclude.bottomSheetDescription.text = apod.explanation
@@ -72,7 +103,11 @@ class PictureFragment : Fragment() {
                 }
             }
             is State.Loading -> {
-
+                binding.let {
+                    it.imageApod.setImageResource(R.drawable.ic_no_photo)
+                    it.bottomSheetInclude.bottomSheetDescriptionHeader.text = ""
+                    it.bottomSheetInclude.bottomSheetDescription.text = ""
+                }
             }
             is State.Error -> {
                 State.error.message?.let {
