@@ -10,7 +10,7 @@
         <item name="colorOnSecondary">@color/white</item>
 
         <item name="colorSurface">@color/ebony_clay</item>
-        <item name="colorError">@color/cinnabar</item>
+        <item name="colorError">@color/wild_watermelon</item>
         <item name="colorOnError">@color/white</item>
 
         <item name="android:statusBarColor">?colorPrimaryVariant</item>

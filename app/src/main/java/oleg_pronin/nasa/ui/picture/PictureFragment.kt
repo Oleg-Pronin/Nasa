@@ -13,6 +13,7 @@ import oleg_pronin.nasa.databinding.FragmentPictureBinding
 import oleg_pronin.nasa.domain.entity.APOD
 import oleg_pronin.nasa.ui.bottom_navigation.BottomNavigationDrawerFragment
 import oleg_pronin.nasa.ui.search.SearchFragment
+import oleg_pronin.nasa.ui.setting.SettingFragment
 import oleg_pronin.nasa.utils.createSnackbarAndShow
 
 class PictureFragment : Fragment() {
@@ -49,34 +50,47 @@ class PictureFragment : Fragment() {
     }
 
     private fun initUIEvent() {
-        binding.imageApod.setOnClickListener {
-            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-        }
-
-        binding.bottomAppBar.setNavigationOnClickListener {
-            activity?.let {
-                BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
+        binding.let { it ->
+            it.imageApod.setOnClickListener {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }
-        }
 
-        binding.bottomAppBar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.app_bar_search -> {
-                    activity
-                        ?.supportFragmentManager
-                        ?.beginTransaction()
-                        ?.replace(R.id.container, SearchFragment())
-                        ?.addToBackStack(null)
-                        ?.commit()
-                    true
+            it.bottomAppBar.setNavigationOnClickListener {
+                activity?.let {
+                    BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
                 }
-                else -> false
+            }
+
+            it.bottomAppBar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.app_bar_search -> {
+                        activity
+                            ?.supportFragmentManager
+                            ?.beginTransaction()
+                            ?.replace(R.id.container, SearchFragment())
+                            ?.addToBackStack(null)
+                            ?.commit()
+                        true
+                    }
+                    R.id.app_bar_setting -> {
+                        activity
+                            ?.supportFragmentManager
+                            ?.beginTransaction()
+                            ?.replace(R.id.container, SettingFragment())
+                            ?.addToBackStack(null)
+                            ?.commit()
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            it.fab.setOnClickListener {
+                viewModel.getPictureOfTheDay()
             }
         }
 
-        binding.fab.setOnClickListener {
-            viewModel.getPictureOfTheDay()
-        }
+
     }
 
     private fun initViewModel() {

@@ -17,6 +17,7 @@
         <item name="colorOnBackground">#212121</item>
 
         <item name="textInputStyle">@style/TextFieldStyle</item>
+
         <item name="chipStyle">@style/ChipStyle</item>
         <item name="materialCardViewStyle">@style/CardViewStyle</item>
 

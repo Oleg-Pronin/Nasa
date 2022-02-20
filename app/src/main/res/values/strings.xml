@@ -3,6 +3,8 @@
     <string name="photo_of_the_day_stub">Показать фото дня:</string>
     <string name="reload">Reload</string>
     <string name="search">Поиск</string>
+    <string name="setting">Настройки</string>
     <string name="search_wiki">Найти в Википедии</string>
     <string name="wiki_helper_text">Поищите термин в википедии</string>
+    <string name="choosing_topic">Выбор темы</string>
 </resources>
