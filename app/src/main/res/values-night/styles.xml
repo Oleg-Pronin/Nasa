@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextFieldStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColor">@color/tower_gray</item>
+        <item name="android:textColorHint">@color/tower_gray</item>
+        <item name="errorTextColor">@color/tower_gray</item>
+        <item name="helperTextTextColor">@color/tower_gray</item>
+        <item name="counterTextColor">@color/tower_gray</item>
+        <item name="endIconTint">@color/tower_gray</item>
+
+        <item name="boxStrokeColor">@color/text_field_stroke</item>
+        <item name="hintTextColor">@color/text_field_stroke</item>
+
+        <item name="boxBackgroundColor">@color/text_field_background</item>
+    </style>
+
+    <style name="ChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:textColor">@color/chip_text</item>
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="chipStrokeColor">@color/tower_gray</item>
+        <item name="chipStrokeWidth">1dp</item>
+    </style>
+
+    <style name="CardViewStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">?cardViewColor</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">10dp</item>
+        <item name="cardPreventCornerOverlap">false</item>
+    </style>
+</resources>

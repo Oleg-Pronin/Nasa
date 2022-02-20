@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="green">#247E0F</color>
-    <color name="light_gray">#B6BAB6</color>
+    <color name="white">#FFFFFF</color><!--Цвет шрифта автивного элемента-->
+
+    <!-- Светлая тема -->
+    <color name="gallery">#EEEEEE</color><!--Цвета BottomBar-->
+    <color name="alabaster">#FAFAFA</color><!--colorPrimary-->
+    <color name="silver">#BCBCBC</color><!--colorPrimaryVariant-->
+    <color name="cutty_sark">#546E7A</color><!--colorOnPrimary-->
+    <color name="mercury">#EAE8E8</color><!--Цвет карточек-->
+    <color name="robins_egg_blue">#00BCD4</color><!--colorSecondary-->
+    <color name="deep_cerulean">#008BA3</color><!--colorSecondaryVariant-->
+
+    <color name="cinnabar">#E53935</color><!--errorColor-->
+
+    <!-- Темная тема -->
+    <color name="ebony_clay">#1E272C</color><!--Цвета BottomBar--><!--Цвет карточек-->
+    <color name="outer_space">#263238</color><!--colorPrimary-->
+    <color name="tower_gray">#B0BEC5</color><!--colorOnPrimary-->
+    <color name="persian_green">#009688</color><!--Цвет автивного элемента-->
+
+    <color name="wild_watermelon">#FF5370</color><!--errorColor-->
 </resources>

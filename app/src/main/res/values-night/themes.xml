@@ -1,16 +1,26 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.Nasa" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/outer_space</item>
+        <item name="colorPrimaryVariant">@color/outer_space</item>
+        <item name="colorOnPrimary">@color/tower_gray</item>
+
+        <item name="colorSecondary">@color/tower_gray</item>
+        <item name="colorSecondaryVariant">@color/deep_cerulean</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <item name="colorSurface">@color/ebony_clay</item>
+        <item name="colorError">@color/cinnabar</item>
+        <item name="colorOnError">@color/white</item>
+
+        <item name="android:statusBarColor">?colorPrimaryVariant</item>
+        <item name="android:colorBackground">@color/outer_space</item>
+        <item name="colorOnBackground">#212121</item>
+
+        <item name="textInputStyle">@style/TextFieldStyle</item>
+        <item name="chipStyle">@style/ChipStyle</item>
+        <item name="materialCardViewStyle">@style/CardViewStyle</item>
+
+        <item name="cardViewColor">@color/ebony_clay</item>
     </style>
 </resources>
